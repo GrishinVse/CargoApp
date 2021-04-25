@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coursework_ui.controllers.MenuPageController">
+   <top>
+      <HBox prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="mainPageButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Main Page" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="transportButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Transports" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="aboutButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="205.0" text="About Author" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="EXIT" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <AnchorPane fx:id="anchorView" prefHeight="550.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
