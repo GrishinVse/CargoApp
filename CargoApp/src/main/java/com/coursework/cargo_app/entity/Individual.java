@@ -1,14 +1,41 @@
 package com.coursework.cargo_app.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Individual extends Client implements Serializable {
+public class Individual implements Serializable {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    @Column(name = "email")
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "phone")
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     @Column(name = "first_name")
     private String first_name;
@@ -33,10 +60,13 @@ public class Individual extends Client implements Serializable {
     }
 
     public Individual(String email, String phone, String first_name, String last_name) {
-        super(email, phone);
+        this.email = email;
+        this.phone = phone;
         this.first_name = first_name;
         this.last_name = last_name;
     }
+
+    public Individual(){}
 
     // Foreign keys
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "individual")

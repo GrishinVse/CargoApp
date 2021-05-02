@@ -5,7 +5,37 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Corporate extends Client implements Serializable {
+public class Corporate implements Serializable {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    @Column(name = "email")
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "phone")
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     @Column(name = "company_name")
     private String company_name;
@@ -30,10 +60,13 @@ public class Corporate extends Client implements Serializable {
     }
 
     public Corporate(String email, String phone, String company_name, String legal_address) {
-        super(email, phone);
+        this.email = email;
+        this.phone = phone;
         this.company_name = company_name;
         this.legal_address = legal_address;
     }
+
+    public Corporate(){ }
 
     // Foreign keys
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "corporate")

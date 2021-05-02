@@ -27,9 +27,9 @@ public class Job implements Serializable {
     }
 
     @Column(name = "min_salary")
-    private Float min_salary;
+    private float min_salary;
 
-    public Float getMin_salary() {
+    public float getMin_salary() {
         return min_salary;
     }
 

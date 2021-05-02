@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coursework_ui.controllers.MainPageController">
+    <children>
+        <SplitPane dividerPositions="0.31453634085213034" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane maxHeight="550.0" maxWidth="300.0" minHeight="550.0" minWidth="248.0" prefHeight="550.0" prefWidth="248.0" SplitPane.resizableWithParent="false">
+                    <children>
+                        <TableView fx:id="orderListTableView" layoutY="-2.0" maxHeight="550.0" maxWidth="300.0" minHeight="550.0" minWidth="251.0" prefHeight="550.0" prefWidth="251.0">
+                            <columns>
+                                <TableColumn fx:id="IdColumn" minWidth="43.00000077486038" prefWidth="59.00000077486038" text="ID" />
+                                <TableColumn fx:id="TypeColumn" minWidth="125.39998930692673" prefWidth="191.3999900817871" text="Order Type" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane maxHeight="550.0" maxWidth="576.0" minHeight="550.0" minWidth="490.0" prefHeight="550.0" prefWidth="576.0">
+               <children>
+                  <GridPane layoutX="12.0" layoutY="13.0" prefHeight="233.0" prefWidth="522.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="125.00003051757812" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.9999694824219" minWidth="10.0" prefWidth="334.9999694824219" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Start Address" />
+                        <Label text="Other Address" GridPane.rowIndex="1" />
+                        <Label text="End Address" GridPane.rowIndex="2" />
+                        <Label fx:id="startLabel" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="otherLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="endLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Order Type" GridPane.rowIndex="3" />
+                        <Label fx:id="typeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Description" GridPane.rowIndex="4" />
+                        <TextArea fx:id="descriptionArea" prefHeight="69.0" prefWidth="335.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <TableView fx:id="transportTable" layoutX="1.0" layoutY="287.0" prefHeight="80.0" prefWidth="544.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
+                    <columns>
+                      <TableColumn fx:id="transIdColumn" prefWidth="45.99999922513962" text="ID" />
+                      <TableColumn fx:id="transBrandColumn" prefWidth="129.20001602172852" text="Brand" />
+                        <TableColumn fx:id="transCapacityColumn" prefWidth="103.99998474121094" text="Capacity" />
+                        <TableColumn fx:id="transCarryingColumn" prefWidth="101.4000244140625" text="Carrying" />
+                        <TableColumn fx:id="transLicenceColumn" prefWidth="161.5999755859375" text="Licence" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="235.0" layoutY="269.0" text="Transport Info" />
+                  <Line endX="420.0" layoutX="112.0" layoutY="258.0" startX="-100.0" stroke="#ab2b2b" strokeWidth="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" />
+                  <TableView fx:id="individualTable" layoutY="397.0" prefHeight="80.0" prefWidth="544.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="indEmailColumn" prefWidth="183.40002745389938" text="Email" />
+                      <TableColumn fx:id="indPhoneColumn" prefWidth="103.79997253417969" text="Phone" />
+                        <TableColumn fx:id="indFirstNameColumn" prefWidth="122.60003662109375" text="First Name" />
+                        <TableColumn fx:id="indLastNameColumn" prefWidth="136.4000244140625" text="Last Name" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="245.0" layoutY="379.0" text="Client Info" />
+                  <Button layoutX="34.0" layoutY="495.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="New" />
+                  <Button layoutX="127.0" layoutY="495.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Edit" />
+                  <Button layoutX="214.0" layoutY="495.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Delete" />
+               </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

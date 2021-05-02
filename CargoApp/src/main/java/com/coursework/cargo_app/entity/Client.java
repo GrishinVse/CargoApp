@@ -1,14 +1,12 @@
 package com.coursework.cargo_app.entity;
 
-import javax.persistence.FetchType;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @MappedSuperclass
 public class Client {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     public long getId() {

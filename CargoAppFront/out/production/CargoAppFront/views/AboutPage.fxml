@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coursework_ui.controllers.AboutPageController">
    <children>
-      <Label layoutX="47.0" layoutY="16.0" text="Это приложение сделал">
+      <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="99.0" layoutY="14.0" prefHeight="34.0" prefWidth="602.0" text="Информационно-справочная система перевозки грузов" wrapText="true">
          <font>
-            <Font size="20.0" />
+            <Font name="Century Gothic Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="47.0" layoutY="46.0" text="Студент Группы ПИ19-2 Гришин Всеволод" />
-      <Label layoutX="523.0" layoutY="46.0" text="Email: vsevolod.grishin01@gmail.com" />
-      <Label layoutX="523.0" layoutY="73.0" text="GitHub: https://github.com/GrishinVse" />
-      <ImageView fitHeight="401.0" fitWidth="601.0" layoutX="103.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="25.0" layoutY="68.0" text="Выполнил: Студент Группы ПИ19-2 Гришин Всеволод">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="507.0" layoutY="90.0" text="Email: vsevolod.grishin01@gmail.com" />
+      <Label layoutX="505.0" layoutY="117.0" text="GitHub: " />
+      <ImageView fitHeight="385.0" fitWidth="563.0" layoutX="119.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../seva.jpg" />
          </image></ImageView>
-      <Label alignment="CENTER" layoutX="559.0" layoutY="18.0" text="Контактные данные">
+      <Label alignment="CENTER" layoutX="518.0" layoutY="63.0" text="Контактные данные">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Label layoutX="25.0" layoutY="99.0" text="Научный руководитель: профессор, к.т.н. Дёмин И. С.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="549.0" layoutY="110.0" onAction="#handleGit" prefHeight="30.0" prefWidth="227.0" text="https://github.com/GrishinVse/CargoApp" />
    </children>
 </AnchorPane>

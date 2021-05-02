@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coursework_ui.controllers.TransportEditPageController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coursework_ui.controllers.TransportEditPageController">
    <children>
       <GridPane layoutX="77.0" layoutY="61.0" prefHeight="239.0" prefWidth="246.0">
         <columnConstraints>
@@ -30,7 +28,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="okButton" layoutX="119.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="31.0" prefWidth="64.0" text="OK" />
-      <Button fx:id="cancelButton" layoutX="217.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Button fx:id="okButton" layoutX="101.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="31.0" prefWidth="64.0" text="OK" />
+      <Button fx:id="cancelButton" layoutX="234.0" layoutY="327.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="31.0" prefWidth="64.0" text="Cancel" />
    </children>
 </AnchorPane>

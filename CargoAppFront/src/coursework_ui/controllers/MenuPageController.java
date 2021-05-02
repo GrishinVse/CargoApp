@@ -30,11 +30,17 @@ public class MenuPageController {
 
     public static Stage primaryStage = new Stage();
 
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     /**
      * Инициализация контроллера при первом запуске
      */
     @FXML
-    public void initialize() { }
+    public void initialize() {
+        switchPage("StartPage");
+    }
 
     /**
      * Функция работает с кнопками в главном меню
@@ -43,6 +49,8 @@ public class MenuPageController {
     public void listenButtons() {
         aboutButton.setOnAction(actionEvent -> switchPage("AboutPage"));
         transportButton.setOnAction(actionEvent -> switchPage("TransportPage"));
+        mainPageButton.setOnAction(actionEvent -> switchPage("MainPage"));
+
         exitButton.setOnAction(actionEvent -> exit());
     }
 

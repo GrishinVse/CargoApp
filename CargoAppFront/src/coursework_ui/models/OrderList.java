@@ -19,9 +19,9 @@ public class OrderList implements JSONSerialize{
     // ???
     //private final ObjectProperty clientId;
     private final ObjectProperty corporateId;
-    private final ObjectProperty individualId;
+    private final ObjectProperty<Individual> individualId;
 
-    private final ObjectProperty employeeId;
+    private final ObjectProperty<Employee> employeeId;
     private final ObjectProperty<Transport> transportId;
 
     public OrderList(){
@@ -76,8 +76,25 @@ public class OrderList implements JSONSerialize{
 
      */
 
+    public OrderList(Long id, String startAddress, String otherAddress, String endAddress, String orderType, String description,
+                     Object transportId, Object individual) {
+        this.id = new SimpleLongProperty(id);
+        this.startAddress = new SimpleStringProperty(startAddress);
+        this.otherAddress = new SimpleStringProperty(otherAddress);
+        this.endAddress = new SimpleStringProperty(endAddress);
+        this.orderType = new SimpleStringProperty(orderType);
+        this.description = new SimpleStringProperty(description);
+
+        this.transportId = new SimpleObjectProperty(transportId);
+        this.corporateId = null;
+        this.individualId = new SimpleObjectProperty(individual);
+
+        this.employeeId = null;
+
+    }
+
     public OrderList(String startAddress, String otherAddress, String endAddress, String orderType, String description,
-                     Object corporateId, Object individualId, Object employeeId,  Transport transportId) {
+                     Object transportId, Object corporateId, Object individualId, Object employeeId) {
         this.id = null;
         this.startAddress = new SimpleStringProperty(startAddress);
         this.otherAddress = new SimpleStringProperty(otherAddress);
@@ -86,11 +103,12 @@ public class OrderList implements JSONSerialize{
         this.description = new SimpleStringProperty(description);
 
         this.corporateId = new SimpleObjectProperty<>(corporateId);
-        this.individualId = new SimpleObjectProperty<>(individualId);
+        this.individualId = new SimpleObjectProperty((Individual) individualId);
 
-        this.employeeId = new SimpleObjectProperty<>(employeeId);
-        this.transportId = new SimpleObjectProperty<Transport>(transportId);
+        this.employeeId = new SimpleObjectProperty((Employee) employeeId);
+        this.transportId = new SimpleObjectProperty((Transport) transportId);
     }
+
 
     // Getters
 
@@ -152,7 +170,7 @@ public class OrderList implements JSONSerialize{
         return corporateId;
     }
 
-    public Object getIndividualId() {
+    public Individual getIndividualId() {
         return individualId.get();
     }
 
@@ -160,7 +178,7 @@ public class OrderList implements JSONSerialize{
         return individualId;
     }
 
-    public Object getEmployeeId() {
+    public Employee getEmployeeId() {
         return employeeId.get();
     }
 
@@ -203,15 +221,15 @@ public class OrderList implements JSONSerialize{
     }
 
     public void setIndividualId(Object individualId) {
-        this.individualId.set(individualId);
+        this.individualId.set((Individual) individualId);
     }
 
     public void setEmployeeId(Object employeeId) {
-        this.employeeId.set(employeeId);
+        this.employeeId.set((Employee) employeeId);
     }
 
-    public void setTransportId(Transport transportId) {
-        this.transportId.set(transportId);
+    public void setTransportId(Object transportId) {
+        this.transportId.set((Transport) transportId);
     }
 
     @Override
@@ -228,13 +246,11 @@ public class OrderList implements JSONSerialize{
         map.put("end_address", endAddress.get());
         map.put("order_type", orderType.get());
 
-        //map.put("transport_id", transportId.get().toString());
-
         map.put("transport_id", new Gson().fromJson(transportId.get().toJson(), (Type) JsonObject.class));
+        map.put("individual_id", new Gson().fromJson(individualId.get().toJson(), (Type) JsonObject.class));
+        map.put("employee_id", new Gson().fromJson(employeeId.get().toJson(), (Type) JsonObject.class));
 
-        map.put("employee_id", employeeId.get().toString());
         map.put("corporate_id", corporateId.get().toString());
-        map.put("individual_id", individualId.get().toString());
 
         Gson gson = new Gson();
         return gson.toJson(map);

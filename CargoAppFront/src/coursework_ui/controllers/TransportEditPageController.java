@@ -1,12 +1,15 @@
 package coursework_ui.controllers;
 
 import coursework_ui.models.Transport;
+import coursework_ui.utils.AlertMessage;
 import coursework_ui.utils.RequestManager;
+import coursework_ui.utils.UtilsClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class TransportEditPageController {
@@ -29,28 +32,35 @@ public class TransportEditPageController {
     @FXML
     private TextField plateField;
 
+    private Boolean okClicked = false;
+
     RequestManager req_manager = new RequestManager();
-    Transport loc_transport = new Transport();
+    private Transport locTransport = new Transport();
     private Stage dialogStage;
 
-    public void setTransport(Transport transport){
-        this.loc_transport = transport;
+    public void setLocTransport(Transport transport){
+        this.locTransport = transport;
         brandField.setText(transport.getBrand());
         carryingField.setText(transport.getCarrying());
         capacityField.setText(transport.getCapacity());
         plateField.setText(transport.getLicence_plate());
     }
 
+    public Transport getLocTransport() {
+        return locTransport;
+    }
+
     private boolean isInputValid() {
+
         String errorMessage = "";
         if (brandField.getText() == null || brandField.getText().length() == 0) {
-            errorMessage += "Error: brandField";
+            errorMessage += "Error: Incorrect Brand Field";
         }
-        else if (carryingField.getText() == null || carryingField.getText().length() == 0) {
-            errorMessage += "Error: carryingField";
+        else if (carryingField.getText() == null || carryingField.getText().length() == 0 || !UtilsClass.isDigit(carryingField.getText())) {
+            errorMessage += "Error: Carrying Field is not integer";
         }
-        else if (capacityField.getText() == null || capacityField.getText().length() == 0) {
-            errorMessage += "Error: capacityField";
+        else if (capacityField.getText() == null || capacityField.getText().length() == 0 || !UtilsClass.isDigit(capacityField.getText())) {
+            errorMessage += "Error: Capacity Field is not integer";
         }
         else if (plateField.getText() == null || plateField.getText().length() == 0) {
             errorMessage += "Error: plateField";
@@ -59,37 +69,55 @@ public class TransportEditPageController {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR!");
-            alert.setHeaderText("Fields are incorrect");
-            alert.setContentText(errorMessage);
 
-            alert.showAndWait();
+            AlertMessage.getAlert(errorMessage);
+
             return false;
         }
     }
 
     public TransportEditPageController(){}
 
+    /**
+     * Инициализация контроллера при первом запуске
+     */
     @FXML
-    public void initialize() {
-
+    public void initialize(Stage editStage, Transport selectedTransport) {
+        this.dialogStage = editStage;
+        setLocTransport(selectedTransport);
     }
 
     @FXML
     void handleOk(ActionEvent event) {
         if (isInputValid()){
-            loc_transport.setBrand(brandField.getText());
-            loc_transport.setCapacity(capacityField.getText());
-            loc_transport.setCarrying(carryingField.getText());
-            loc_transport.setLicence_plate(plateField.getText());
+            locTransport.setBrand(brandField.getText());
+            locTransport.setCapacity(capacityField.getText());
+            locTransport.setCarrying(carryingField.getText());
+            locTransport.setLicence_plate(plateField.getText());
 
-            //  close();
+            okClicked = true;
+            dialogStage.close();
         }
     }
 
+    /*
+    @FXML
+    void handleEnter(ActionEvent actionEvent){
+        okButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleOk(actionEvent);
+            }
+        });
+    }
+
+     */
+
     @FXML
     void handleCancel(ActionEvent event) {
+        dialogStage.close();
+    }
 
+    public boolean isOkClicked(){
+        return okClicked;
     }
 }

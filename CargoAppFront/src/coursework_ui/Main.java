@@ -1,30 +1,39 @@
 package coursework_ui;
 
 import coursework_ui.controllers.MenuPageController;
-import coursework_ui.controllers.TransportPageController;
 import coursework_ui.models.Transport;
 import coursework_ui.utils.RequestManager;
+import coursework_ui.utils.UtilsClass;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Основное приложение клиентской части
+ */
 public class Main extends Application {
 
     /**
-     * The path to MenuPage.fxml
+     * Путь к MenuPage.fxml
      */
     private final String menuPage = "/views/MenuPage.fxml";
 
     private final String transportPage = "/views/TransportPage.fxml";
 
     private MenuPageController loc_menuController;
+
+    /**
+     * Позволяет открывать сайты в браузере по умолчанию
+     */
+    public static HostServices hostServices ;
 
     private Stage primaryStage;
     RequestManager req_manager = new RequestManager();
@@ -44,9 +53,16 @@ public class Main extends Application {
          */
         transportData = req_manager.getTransports();
 
+        hostServices = getHostServices();
+
+
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Cargo App");
         this.primaryStage.setResizable(false);
+        this.primaryStage.getIcons().add(new Image("/icon.png"));
+
+
+        System.out.println(UtilsClass.isPlateFormat("В174РЖ74"));
 
         InitMainPage();
     }

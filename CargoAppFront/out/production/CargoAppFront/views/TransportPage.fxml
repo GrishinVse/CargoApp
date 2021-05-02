@@ -20,8 +20,9 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="newButton" layoutX="32.0" layoutY="505.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="New" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" />
-      <Button fx:id="editButton" layoutX="114.0" layoutY="509.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="Edit" />
+      <Button fx:id="newButton" layoutX="32.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleNewTransport" prefHeight="30.0" prefWidth="70.0" text="New" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="30.0" />
+      <Button fx:id="editButton" layoutX="114.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleEditTransport" prefHeight="31.0" prefWidth="70.0" text="Edit" />
       <Button fx:id="deleteButton" layoutX="198.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleDeleteTransport" prefHeight="31.0" prefWidth="70.0" text="Delete" />
+      <Button layoutX="688.0" layoutY="16.0" mnemonicParsing="false" onAction="#updatePage" text="Update Page" />
    </children>
 </AnchorPane>

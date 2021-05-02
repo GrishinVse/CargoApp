@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="178.0" layoutY="14.0" prefHeight="58.0" prefWidth="444.0" text="Стартовая страница">
+         <font>
+            <Font name="Century Gothic Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="232.0" layoutY="85.0" text="Информационно-справочная система компании &quot;CargoApp&quot;" />
+      <ImageView fitHeight="385.0" fitWidth="700.0" layoutX="50.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../truck.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

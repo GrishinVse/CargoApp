@@ -39,7 +39,7 @@ public class Transport implements JSONSerialize{
 
     // Getters
 
-    public long getId() {
+    public Long getId() {
         return id.get();
     }
 
@@ -81,6 +81,10 @@ public class Transport implements JSONSerialize{
 
     // Setters
 
+    public void setId(Long id_number){
+        this.id.set(id_number);
+    }
+
     public void setBrand(String brand) {
         this.brand.set(brand);
     }
@@ -100,7 +104,13 @@ public class Transport implements JSONSerialize{
     @Override
     public String toJson() {
         Map<String, String> map = new HashMap<>();
-        map.put("id", String.valueOf(id.get()));
+        if (id == null){
+            System.out.printf("ID of new Transport ", this.getClass(), " is NULL!");
+            map.put("id", "");
+        } else {
+            System.out.printf("ID of new Transport ", this.getClass(), " is ", id.get());
+            map.put("id", String.valueOf(id.get()));
+        }
         map.put("brand", brand.get());
         map.put("capacity", capacity.get());
         map.put("carrying", carrying.get());
