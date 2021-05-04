@@ -20,7 +20,7 @@
                 </AnchorPane>
                 <AnchorPane maxHeight="550.0" maxWidth="576.0" minHeight="550.0" minWidth="490.0" prefHeight="550.0" prefWidth="576.0">
                <children>
-                  <GridPane layoutX="12.0" layoutY="13.0" prefHeight="233.0" prefWidth="522.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <GridPane layoutX="12.0" layoutY="39.0" prefHeight="217.0" prefWidth="522.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="39.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="125.00003051757812" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.9999694824219" minWidth="10.0" prefWidth="334.9999694824219" />
@@ -45,29 +45,39 @@
                         <TextArea fx:id="descriptionArea" prefHeight="69.0" prefWidth="335.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
-                  <TableView fx:id="transportTable" layoutX="1.0" layoutY="287.0" prefHeight="80.0" prefWidth="544.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
+                  <TableView fx:id="transportTable" layoutY="287.0" prefHeight="80.0" prefWidth="544.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="transIdColumn" prefWidth="45.99999922513962" text="ID" />
-                      <TableColumn fx:id="transBrandColumn" prefWidth="129.20001602172852" text="Brand" />
-                        <TableColumn fx:id="transCapacityColumn" prefWidth="103.99998474121094" text="Capacity" />
-                        <TableColumn fx:id="transCarryingColumn" prefWidth="101.4000244140625" text="Carrying" />
-                        <TableColumn fx:id="transLicenceColumn" prefWidth="161.5999755859375" text="Licence" />
+                      <TableColumn fx:id="transIdColumn" prefWidth="45.0" text="ID" />
+                      <TableColumn fx:id="transBrandColumn" prefWidth="129.0" text="Brand" />
+                        <TableColumn fx:id="transCapacityColumn" prefWidth="103.0" text="Capacity" />
+                        <TableColumn fx:id="transCarryingColumn" prefWidth="101.0" text="Carrying" />
+                        <TableColumn fx:id="transLicenceColumn" prefWidth="161.0" text="Licence" />
                     </columns>
                   </TableView>
                   <Label layoutX="235.0" layoutY="269.0" text="Transport Info" />
-                  <Line endX="420.0" layoutX="112.0" layoutY="258.0" startX="-100.0" stroke="#ab2b2b" strokeWidth="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" />
-                  <TableView fx:id="individualTable" layoutY="397.0" prefHeight="80.0" prefWidth="544.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Line endX="420.0" layoutX="112.0" layoutY="265.0" startX="-100.0" stroke="#ab2b2b" strokeWidth="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" />
+                  <TableView fx:id="individualTable" layoutY="400.0" prefHeight="80.0" prefWidth="544.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="indEmailColumn" prefWidth="183.40002745389938" text="Email" />
-                      <TableColumn fx:id="indPhoneColumn" prefWidth="103.79997253417969" text="Phone" />
-                        <TableColumn fx:id="indFirstNameColumn" prefWidth="122.60003662109375" text="First Name" />
-                        <TableColumn fx:id="indLastNameColumn" prefWidth="136.4000244140625" text="Last Name" />
+                      <TableColumn fx:id="indEmailColumn" prefWidth="102.0" text="Email" />
+                      <TableColumn fx:id="indPhoneColumn" prefWidth="106.0" text="Phone" />
+                        <TableColumn fx:id="indFirstNameColumn" prefWidth="153.0" text="First Name" />
+                        <TableColumn fx:id="indLastNameColumn" prefWidth="180.0" text="Last Name" />
                     </columns>
                   </TableView>
-                  <Label layoutX="245.0" layoutY="379.0" text="Client Info" />
-                  <Button layoutX="34.0" layoutY="495.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="New" />
-                  <Button layoutX="127.0" layoutY="495.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Edit" />
-                  <Button layoutX="214.0" layoutY="495.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Delete" />
+                  <TableView fx:id="corporateTable" layoutY="400.0" prefHeight="80.0" prefWidth="544.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="crpEmailColumn" prefWidth="102.0" text="Email" />
+                      <TableColumn fx:id="crpPhoneColumn" prefWidth="106.0" text="Phone" />
+                        <TableColumn fx:id="crpNameColumn" prefWidth="153.0" text="Company Name" />
+                        <TableColumn fx:id="crpAddressColumn" prefWidth="180.0" text="Address" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="245.0" layoutY="379.0" text="Client Info" visible="true" />
+                  <Button fx:id="newButton" layoutX="29.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleNewOrder" prefHeight="31.0" prefWidth="63.0" text="New" />
+                  <Button fx:id="editButton" layoutX="122.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleEditOrder" prefHeight="31.0" prefWidth="63.0" text="Edit" />
+                  <Button fx:id="deleteButton" layoutX="209.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleDeleteOrder" prefHeight="31.0" prefWidth="63.0" text="Delete" />
+                  <Label fx:id="clientInfo" layoutX="254.0" layoutY="427.0" text="Label" />
+                  <Button layoutX="474.0" layoutY="1.0" mnemonicParsing="false" onAction="#updatePage" text="Update" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
                </children>
                 </AnchorPane>
             </items>

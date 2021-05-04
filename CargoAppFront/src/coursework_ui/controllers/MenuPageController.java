@@ -8,6 +8,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * Контроллер по работе с главным меню
+ */
 public class MenuPageController {
 
     @FXML

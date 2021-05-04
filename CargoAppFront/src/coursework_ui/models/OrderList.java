@@ -8,6 +8,9 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Заказ
+ */
 public class OrderList implements JSONSerialize{
     private final LongProperty id;
     private final StringProperty startAddress;
@@ -16,9 +19,7 @@ public class OrderList implements JSONSerialize{
     private final StringProperty orderType;
     private final StringProperty description;
 
-    // ???
-    //private final ObjectProperty clientId;
-    private final ObjectProperty corporateId;
+    private final ObjectProperty<Corporate> corporateId;
     private final ObjectProperty<Individual> individualId;
 
     private final ObjectProperty<Employee> employeeId;
@@ -77,7 +78,7 @@ public class OrderList implements JSONSerialize{
      */
 
     public OrderList(Long id, String startAddress, String otherAddress, String endAddress, String orderType, String description,
-                     Object transportId, Object individual) {
+                     Object transportId, Object individual, Object corporate) {
         this.id = new SimpleLongProperty(id);
         this.startAddress = new SimpleStringProperty(startAddress);
         this.otherAddress = new SimpleStringProperty(otherAddress);
@@ -86,7 +87,7 @@ public class OrderList implements JSONSerialize{
         this.description = new SimpleStringProperty(description);
 
         this.transportId = new SimpleObjectProperty(transportId);
-        this.corporateId = null;
+        this.corporateId = new SimpleObjectProperty(corporate);
         this.individualId = new SimpleObjectProperty(individual);
 
         this.employeeId = null;
@@ -102,15 +103,16 @@ public class OrderList implements JSONSerialize{
         this.orderType = new SimpleStringProperty(orderType);
         this.description = new SimpleStringProperty(description);
 
-        this.corporateId = new SimpleObjectProperty<>(corporateId);
+        this.corporateId = new SimpleObjectProperty((Corporate) corporateId);
         this.individualId = new SimpleObjectProperty((Individual) individualId);
 
         this.employeeId = new SimpleObjectProperty((Employee) employeeId);
         this.transportId = new SimpleObjectProperty((Transport) transportId);
     }
 
-
-    // Getters
+    /**
+     * Эта часть с геттерами для данного класса
+     */
 
     public long getId() {
         return id.get();
@@ -160,18 +162,16 @@ public class OrderList implements JSONSerialize{
         return description;
     }
 
-    ///
-
-    public Object getCorporateId() {
-        return corporateId.get();
+    public ReadOnlyObjectProperty<Corporate> getCorporateId() {
+        return corporateId;
     }
 
     public ObjectProperty corporateIdProperty() {
         return corporateId;
     }
 
-    public Individual getIndividualId() {
-        return individualId.get();
+    public ReadOnlyObjectProperty<Individual> getIndividualId() {
+        return individualId;
     }
 
     public ObjectProperty individualIdProperty() {
@@ -194,7 +194,9 @@ public class OrderList implements JSONSerialize{
         return transportId;
     }
 
-    // Setters
+    /**
+     * Эта часть с сеттерами для данного класса
+     */
 
     public void setStartAddress(String startAddress) {
         this.startAddress.set(startAddress);
@@ -217,7 +219,7 @@ public class OrderList implements JSONSerialize{
     }
 
     public void setCorporateId(Object corporateId) {
-        this.corporateId.set(corporateId);
+        this.corporateId.set((Corporate) corporateId);
     }
 
     public void setIndividualId(Object individualId) {
@@ -232,6 +234,10 @@ public class OrderList implements JSONSerialize{
         this.transportId.set((Transport) transportId);
     }
 
+    /**
+     * Преобразует экземпляр класса в JSON
+     * @return Json запись экземпляра класса OrderList
+     */
     @Override
     public String toJson() {
         Map<String, String> map = new HashMap<>();

@@ -62,7 +62,7 @@ public class Main extends Application {
         this.primaryStage.getIcons().add(new Image("/icon.png"));
 
 
-        System.out.println(UtilsClass.isPlateFormat("В174РЖ74"));
+        //System.out.println(UtilsClass.isPlateFormat("В174РЖ74"));
 
         InitMainPage();
     }
@@ -79,6 +79,9 @@ public class Main extends Application {
     }
      */
 
+    /**
+     * Метод запускает окно с главным меню приложения
+     */
     public void InitMainPage(){
         try {
             FXMLLoader loader = new FXMLLoader(MenuPageController.class.getResource(menuPage));
@@ -95,24 +98,6 @@ public class Main extends Application {
         }
     }
 
-    /*
-    public void showTransportsInfo(){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource(transportPage));
-            AnchorPane transportOverview = (AnchorPane) loader.load();
-
-
-
-            TransportPageController PController = loader.getController();
-            PController.setMainApp(this);
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-     */
 
     public Stage getPrimaryStage() {
         return primaryStage;

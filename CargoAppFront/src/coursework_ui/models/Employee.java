@@ -9,6 +9,9 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Работник нашей компании
+ */
 public class Employee implements JSONSerialize{
     private final LongProperty id;
     private final StringProperty firstName;
@@ -30,7 +33,9 @@ public class Employee implements JSONSerialize{
         this.jobId = new SimpleObjectProperty<Job>(jobId);
     }
 
-    // Getters
+    /**
+     * Эта часть с геттерами для данного класса
+     */
 
     public Long getId() {
         return id.get();
@@ -80,7 +85,9 @@ public class Employee implements JSONSerialize{
         return jobId;
     }
 
-    // Setters
+    /**
+     * Эта часть с сеттерами для данного класса
+     */
 
     public void setId(Long id) {
         this.id.set(id);
@@ -106,7 +113,10 @@ public class Employee implements JSONSerialize{
         this.jobId.set(jobId);
     }
 
-
+    /**
+     * Преобразует экземпляр класса в JSON
+     * @return Json запись экземпляра класса Employee
+     */
     @Override
     public String toJson() {
         Map<String, String> map = new HashMap<>();

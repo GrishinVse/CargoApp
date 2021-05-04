@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 /**
- * Данный класс обращается к серверу по протоколу HTTP
+ * Данный класс обращается к серверу по протоколу HTTP и десериализовывает Json объекты
  */
 public class RequestManager {
     /**
@@ -139,22 +139,26 @@ public class RequestManager {
                 if (isIndividual & !isCorporate){
                     System.out.println("Our Client is Individual");
                     JsonObject individualJson = currentOrderList.get("individual").getAsJsonObject();
-                    Individual connIndividual = parseIndividual(individualJson);
+                    Object connIndividual = parseIndividual(individualJson);
+                    Object connCorporate = "null";
                     // 1) corporateId = null & individualId = connClient
                     resultOrderList = new OrderList(id, startAddress, otherAddress, endAddress,
-                            orderType, description, connTransport, connIndividual);
+                            orderType, description, connTransport, connIndividual, connCorporate);
                 }
 
                 if (!isIndividual & isCorporate) {
                     System.out.println("Our Client is Corporate");
                     JsonObject corporateJson = currentOrderList.get("corporate").getAsJsonObject();
-                    //Object connClient = parseCorporate(corporateJson);
+                    Object connCorporate = parseCorporate(corporateJson);
+                    Object connIndividual = "null";
                     // 2) corporateId = connClient & individualId = null
+                    resultOrderList = new OrderList(id, startAddress, otherAddress, endAddress,
+                            orderType, description, connTransport, connIndividual, connCorporate);
                 }
 
                 if (!isIndividual & !isCorporate){
                     System.out.println("Our Client is NOT Defined!");
-                    Object connClient = null;
+                    Object connClient = "null";
                 }
                 /*
                 try {
@@ -177,6 +181,37 @@ public class RequestManager {
             }
         }
         return orderListsData;
+    }
+
+    /**
+     * Удаляет экземпляр класса OrderList
+     * @param orderList запись для удаления
+     * @return ответ от сервера (200) - успешное удаление
+     */
+    public Boolean deleteOrderList(OrderList orderList) {
+        Long id = orderList.getId();
+        if (id == null)
+            return false;
+
+        return HttpManager.DeleteRequest(ServerURL + "order_lists/" + id);
+    }
+
+    /**
+     * Создает экземпляр класса OrderList
+     * @param orderList запись для создания
+     */
+    public void createOrderList(OrderList orderList){
+        System.out.println("JSON of new OrderList:\n" + orderList.toJson());
+        HttpManager.PostRequest(ServerURL + "order_lists", orderList.toJson());
+    }
+
+    /**
+     * Изменяет/добавляет экземпляр класса OrderList
+     * @param orderList запись для изменения
+     */
+    public void updateOrderList(OrderList orderList){
+        System.out.println("JSON on updated OrderList:\n" + orderList.toJson());
+        HttpManager.PutRequest(ServerURL + "order_lists/" + orderList.getId(), orderList.toJson());
     }
 
     /**
@@ -218,6 +253,32 @@ public class RequestManager {
     }
 
     /**
+     * Обращается к Базе данных по GET запросу и возвращает значения физических лиц
+     * @return Список всех физ. лиц из БД
+     * @throws IOException
+     */
+    public ObservableList<Individual> getIndividuals() throws IOException {
+        ObservableList<Individual> individualData = FXCollections.observableArrayList();
+        String value = HttpManager.GetRequest(ServerURL + "individuals");
+        if (value.equals("null")){
+            System.out.println("Have returned Null! Something went wrong");
+            System.out.println(value);
+            return null;
+        } else {
+            JsonArray jsonResult = new JsonParser().parse(value).getAsJsonArray();
+
+            for (int i = 0; i < jsonResult.size(); i++) {
+                JsonObject currentIndividual = jsonResult.get(i).getAsJsonObject();
+
+                Individual resultIndividual = parseIndividual(currentIndividual);
+
+                individualData.add(resultIndividual);
+            }
+        }
+        return individualData;
+    }
+
+    /**
      * Преобразует JSON запись экземпляра в Java класс
      * @param individualJson JSON запись объекта
      * @return экземпляр класса Individual
@@ -231,6 +292,51 @@ public class RequestManager {
         return new Individual(id, email, phone, firstName, lastName);
     }
 
+    /**
+     * Обращается к Базе данных по GET запросу и возвращает значения юридических лиц
+     * @return Список всех юр. лиц из БД
+     * @throws IOException
+     */
+    public ObservableList<Corporate> getCorporates() throws IOException {
+        ObservableList<Corporate> сorporateData = FXCollections.observableArrayList();
+        String value = HttpManager.GetRequest(ServerURL + "corporates");
+        if (value.equals("null")){
+            System.out.println("Have returned Null! Something went wrong");
+            System.out.println(value);
+            return null;
+        } else {
+            JsonArray jsonResult = new JsonParser().parse(value).getAsJsonArray();
+
+            for (int i = 0; i < jsonResult.size(); i++) {
+                JsonObject currentCorporate = jsonResult.get(i).getAsJsonObject();
+
+                Corporate resultCorporate = parseCorporate(currentCorporate);
+
+                сorporateData.add(resultCorporate);
+            }
+        }
+        return сorporateData;
+    }
+
+    /**
+     * Преобразует JSON запись экземпляра в Java класс
+     * @param corporateJson JSON запись объекта
+     * @return экземпляр класса Corporate
+     */
+    public Corporate parseCorporate(JsonObject corporateJson){
+        Long id = corporateJson.get("id").getAsLong();
+        String email = corporateJson.get("email").getAsString();
+        String phone = corporateJson.get("phone").getAsString();
+        String companyName = corporateJson.get("company_name").getAsString();
+        String legalAddress = corporateJson.get("legal_address").getAsString();
+        return new Corporate(id, email, phone, companyName, legalAddress);
+    }
+
+    /**
+     * Преобразует JSON запись экземпляра в Java класс
+     * @param employeeJson JSON запись объекта
+     * @return экземпляр класса Employee
+     */
     public Employee parseEmployee(JsonObject employeeJson){
         Long id = employeeJson.get("id").getAsLong();
         String firstName = employeeJson.get("first_name").getAsString();

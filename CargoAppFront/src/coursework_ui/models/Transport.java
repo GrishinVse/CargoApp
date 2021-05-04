@@ -5,11 +5,13 @@ import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Транспортное средство
+ */
 public class Transport implements JSONSerialize{
     private final LongProperty id;
     private final StringProperty brand;
@@ -37,7 +39,9 @@ public class Transport implements JSONSerialize{
         this.licence_plate = new SimpleStringProperty(licence_plate);
     }
 
-    // Getters
+    /**
+     * Эта часть с геттерами для данного класса
+     */
 
     public Long getId() {
         return id.get();
@@ -79,7 +83,9 @@ public class Transport implements JSONSerialize{
         return licence_plate;
     }
 
-    // Setters
+    /**
+     * Эта часть с сеттерами для данного класса
+     */
 
     public void setId(Long id_number){
         this.id.set(id_number);
@@ -101,6 +107,10 @@ public class Transport implements JSONSerialize{
         this.licence_plate.set(licence_plate);
     }
 
+    /**
+     * Преобразует экземпляр класса в JSON
+     * @return Json запись экземпляра класса Transport
+     */
     @Override
     public String toJson() {
         Map<String, String> map = new HashMap<>();

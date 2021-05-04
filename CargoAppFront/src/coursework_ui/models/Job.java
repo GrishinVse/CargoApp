@@ -6,6 +6,9 @@ import javafx.beans.property.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Профессия
+ */
 public class Job implements JSONSerialize {
     private final LongProperty id;
     private final StringProperty title;
@@ -27,7 +30,9 @@ public class Job implements JSONSerialize {
         this.minSalary = new SimpleStringProperty(minSalary);
     }
 
-    // Getters
+    /**
+     * Эта часть с геттерами для данного класса
+     */
 
     public long getId() {
         return id.get();
@@ -53,7 +58,9 @@ public class Job implements JSONSerialize {
         return minSalary;
     }
 
-    // Setters
+    /**
+     * Эта часть с сеттерами для данного класса
+     */
 
     public void setId(long id) {
         this.id.set(id);
@@ -67,6 +74,10 @@ public class Job implements JSONSerialize {
         this.minSalary.set(minSalary);
     }
 
+    /**
+     * Преобразует экземпляр класса в JSON
+     * @return Json запись экземпляра класса Job
+     */
     @Override
     public String toJson() {
         Map<String, String> map = new HashMap<>();

@@ -6,12 +6,13 @@ import coursework_ui.utils.RequestManager;
 import coursework_ui.utils.UtilsClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+/**
+ * Контроллер по работе со страницей редактирования транспорта
+ */
 public class TransportEditPageController {
 
     @FXML
@@ -50,6 +51,10 @@ public class TransportEditPageController {
         return locTransport;
     }
 
+    /**
+     * Проверка введенных значений
+     * @return true если введенные данный соответствуют формату
+     */
     private boolean isInputValid() {
 
         String errorMessage = "";
@@ -87,6 +92,9 @@ public class TransportEditPageController {
         setLocTransport(selectedTransport);
     }
 
+    /**
+     * Отрабатывет нажатия на кнопку OK
+     */
     @FXML
     void handleOk(ActionEvent event) {
         if (isInputValid()){
@@ -112,6 +120,9 @@ public class TransportEditPageController {
 
      */
 
+    /**
+     * Отрабатывет нажатия на кнопку Cancel
+     */
     @FXML
     void handleCancel(ActionEvent event) {
         dialogStage.close();

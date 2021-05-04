@@ -27,7 +27,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="99.0" text="Научный руководитель: профессор, к.т.н. Дёмин И. С.">
+      <Label layoutX="25.0" layoutY="99.0" text="Научный руководитель: профессор, д/н Дёмин Игорь Святославович">
          <font>
             <Font size="14.0" />
          </font>

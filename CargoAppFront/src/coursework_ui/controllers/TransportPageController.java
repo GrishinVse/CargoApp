@@ -1,30 +1,23 @@
 package coursework_ui.controllers;
 
-import coursework_ui.Main;
 import coursework_ui.models.Transport;
 import coursework_ui.utils.RequestManager;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Optional;
 
+/**
+ * Контроллер по работе с вкладкой с транспортными средствами
+ */
 public class TransportPageController {
 
     private Stage currentStage;
@@ -65,7 +58,6 @@ public class TransportPageController {
     private Button newButton;
 
     RequestManager req_manager = new RequestManager();
-    private TransportEditPageController editPageController;
 
     /**
      * Инициализация контроллера при первом запуске
@@ -89,6 +81,10 @@ public class TransportPageController {
         plateColumn.setCellValueFactory(cellData -> cellData.getValue().licence_plateProperty());
     }
 
+    /**
+     * Метод обновляет страницу по нажатию кнопки
+     */
+    @FXML
     public void updatePage() {
         try {
             this.transportTableView.setItems(req_manager.getTransports());
@@ -106,6 +102,9 @@ public class TransportPageController {
         plateColumn.setCellValueFactory(cellData -> cellData.getValue().licence_plateProperty());
     }
 
+    /**
+     * Метод позволяет удалить запись о транспортом средстве
+     */
     @FXML
     private void handleDeleteTransport(){
         int selectedIndex = transportTableView.getSelectionModel().getSelectedIndex();
@@ -134,6 +133,9 @@ public class TransportPageController {
         }
     }
 
+    /**
+     * Метод позволяет создать запись о транспортом средстве
+     */
     @FXML
     private void handleNewTransport(){
         Transport newTransport = new Transport("brand", "0.0", "0.0", "A111AA777");
@@ -174,6 +176,9 @@ public class TransportPageController {
         }
     }
 
+    /**
+     * Метод позволяет редактировать запись о транспортом средстве
+     */
     @FXML
     private void handleEditTransport(){
         Transport selectedTransport = transportTableView.getSelectionModel().getSelectedItem();
@@ -187,6 +192,7 @@ public class TransportPageController {
                 Stage editStage = new Stage();
                 editStage.setTitle("Transport Editing");
                 editStage.initOwner(MenuPageController.getPrimaryStage());
+                //editStage.initOwner(TransportPageController.getPrimaryStage());
                 editStage.initModality(Modality.APPLICATION_MODAL);
 
                 Scene editScene = new Scene(editPage);

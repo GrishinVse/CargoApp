@@ -3,6 +3,9 @@ package coursework_ui.controllers;
 import coursework_ui.Main;
 import javafx.fxml.FXML;
 
+/**
+ * Контроллер по работе с вкладкой Об авторе
+ */
 public class AboutPageController {
 
     public AboutPageController(){    }

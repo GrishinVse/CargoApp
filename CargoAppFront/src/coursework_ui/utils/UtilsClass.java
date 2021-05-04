@@ -2,7 +2,16 @@ package coursework_ui.utils;
 
 import java.util.Arrays;
 
+/**
+ * Класс для разных полезных методов
+ */
 public class UtilsClass {
+    /**
+     * Проверяет строку на вхождение в нее цифр
+     * @param string строка для проверки
+     * @return true если в строке только цифры
+     * @throws NumberFormatException
+     */
     public static boolean isDigit(String string) throws NumberFormatException {
         try {
             System.out.println("1 " + string);
@@ -15,6 +24,11 @@ public class UtilsClass {
         }
     }
 
+    /**
+     * Проверка строки на соответствие формату номерного знака РФ
+     * @param string строка для проверки
+     * @return true если строка соответствует формату
+     */
     public static boolean isPlateFormat(String string){
         final String[] chars = new String[]{"А", "В", "Е", "К", "М", "Н", "О", "Р", "С", "Т", "У", "Х", };
 
