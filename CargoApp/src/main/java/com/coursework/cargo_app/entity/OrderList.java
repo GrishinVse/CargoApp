@@ -36,7 +36,7 @@ public class OrderList implements Serializable { //Do not name any table as "ord
         this.start_address = start_address;
     }
 
-    // Make optional somehow
+    // Make optional
     @Column(name = "other_address")
     @Basic(optional = true)
     private String other_address;

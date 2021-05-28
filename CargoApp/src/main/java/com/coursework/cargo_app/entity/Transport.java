@@ -65,4 +65,5 @@ public class Transport implements Serializable {
 
     public Transport(){}
 
+    //public Transport(String brand, float capacity, float carrying, String licence_plate){}
 }

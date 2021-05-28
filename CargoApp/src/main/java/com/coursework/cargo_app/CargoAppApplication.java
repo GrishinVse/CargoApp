@@ -9,5 +9,4 @@ public class CargoAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(CargoAppApplication.class, args);
     }
-
 }
